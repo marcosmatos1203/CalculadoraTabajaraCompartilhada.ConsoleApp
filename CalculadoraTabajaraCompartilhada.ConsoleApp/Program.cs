@@ -37,9 +37,28 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
         //Nossa calculadora deve realizar as operações com "0"
         //Rafa
         #endregion
+
+        #region Requisito 06
+        /** Nossa calculadora deve permitir visualizar as operações já realizadas
+         *  Critérios:
+         *      1 - A descrição da operação realizada deve aparecer assim, exemplo:
+         *          2 + 2 = 4
+         *          10 - 5 = 5
+         *          
+         * marcos
+         */
+        #endregion
+
+
+
+
         static void Main(string[] args)
         {
+
+            string[] operacoesRealizadas = new string[100];
+            int contadorOperacoes = 0;
             string opcao = "";
+
             while (true)
             {
                 //1.5.1 app 1 verão 5 correção de bug 1
@@ -61,6 +80,14 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                     Console.Clear();
                     continue;
                 }
+                if (opcao=="5")
+                {
+                    Console.Clear();
+                    ApresentaOperacoesRealizadas();
+                    Console.ReadLine();
+                    Console.Clear();
+                    continue;
+                }
                 double segundoNumero, primeiroNumero;
 
                 Console.Write("Digite o primeiro número: ");
@@ -70,7 +97,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
 
                 do
                 {
-                    Console.WriteLine("Digite o segundo número");
+                    Console.Write("Digite o segundo número: ");
                     double.TryParse(Console.ReadLine(), out segundoNumero);
                     if (opcao == "4" && segundoNumero == 0)
                     {
@@ -81,6 +108,8 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
 
                 } while (opcao == "4" && segundoNumero == 0);
 
+                string simboloOperacao = "";
+                string operacaoRealizada = "";
                 double resultado = 0;
 
                 switch (opcao)
@@ -90,9 +119,30 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                     case "2": resultado = primeiroNumero - segundoNumero; break;
                     case "3": resultado = primeiroNumero * segundoNumero; break;
                     case "4": resultado = primeiroNumero / segundoNumero; break;
+                   
                     default:
                         break;
                 }
+                switch (opcao)
+                {
+                    case "1": simboloOperacao = " + "; break;
+                    case "2": simboloOperacao = " - "; break;
+                    case "3": simboloOperacao = " * "; break;
+                    case "4": simboloOperacao = " / "; break;
+                    default: break;
+                }
+                void ApresentaOperacoesRealizadas()
+                {
+                    Console.WriteLine("Histórico");
+                    Console.WriteLine("");
+                    for (int i = 0; i < contadorOperacoes; i++)
+                    {
+                        Console.WriteLine(operacoesRealizadas[i]);
+                    }
+                }
+                operacaoRealizada = $"{primeiroNumero} {simboloOperacao} {segundoNumero} = {resultado}";
+                operacoesRealizadas[contadorOperacoes] = operacaoRealizada;
+                contadorOperacoes++;
                 Console.WriteLine("Resultado: " + resultado);
                 Console.ReadLine();
                 Console.Clear();

@@ -32,19 +32,25 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
         //Nossa calculadora deve validar a opções do menu [OK]
         //Rafa
         #endregion
+
+        #region BUG 01 [OK]
+        //Nossa calculadora deve realizar as operações com "0"
+        //Rafa
+        #endregion
         static void Main(string[] args)
         {
             string opcao = "";
             while (true)
             {
                 //1.5.1 app 1 verão 5 correção de bug 1
-                Console.WriteLine("Calculadora 1.3");
+                Console.WriteLine("Calculadora 1.5.1");
                 Console.WriteLine("Digite 1 para somar");
                 Console.WriteLine("Digite 2 para subtrair");
                 Console.WriteLine("Digite 3 para multiplicar");
                 Console.WriteLine("Digite 4 para dividir");
                 Console.WriteLine("Digite 5 para visualizar as operações");
                 Console.WriteLine("Digite S para sair");
+
                 opcao = Console.ReadLine();
                 if (opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4" && opcao != "5" && opcao != "s" && opcao != "S")
                 {
@@ -61,10 +67,22 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
 
                 double.TryParse(Console.ReadLine(), out primeiroNumero);
 
-                Console.Write("Digite o segundo número: ");
 
-                double.TryParse(Console.ReadLine(), out segundoNumero);
+                do
+                {
+                    Console.WriteLine("Digite o segundo número");
+                    double.TryParse(Console.ReadLine(), out segundoNumero);
+                    if (opcao == "4" && segundoNumero == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Impossível dividir por Zero");
+                        Console.ResetColor();
+                    }
+
+                } while (opcao == "4" && segundoNumero == 0);
+
                 double resultado = 0;
+
                 switch (opcao)
                 {
                     case "1": resultado = primeiroNumero + segundoNumero; break;

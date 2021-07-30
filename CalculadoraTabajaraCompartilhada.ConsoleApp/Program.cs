@@ -76,31 +76,17 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 }
                 if (OperacoesRealizadas(opcao))
                 {
-                    Console.Clear();
                     ApresentaOperacoesRealizadas();
-                    Console.ReadLine();
-                    Console.Clear();
                     continue;
                 }
+
                 double segundoNumero, primeiroNumero;
 
                 Console.Write("Digite o primeiro número: ");
 
                 double.TryParse(Console.ReadLine(), out primeiroNumero);
-
-
-                do
-                {
-                    Console.Write("Digite o segundo número: ");
-                    double.TryParse(Console.ReadLine(), out segundoNumero);
-                    if (opcao == "4" && segundoNumero == 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Impossível dividir por Zero");
-                        Console.ResetColor();
-                    }
-
-                } while (opcao == "4" && segundoNumero == 0);
+                
+                segundoNumero = ValidaSegundoNumero(opcao);
 
                 string simboloOperacao = "";
                 string operacaoRealizada = "";
@@ -127,12 +113,15 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 }
                 void ApresentaOperacoesRealizadas()
                 {
+                    Console.Clear();
                     Console.WriteLine("Histórico");
                     Console.WriteLine("");
                     for (int i = 0; i < contadorOperacoes; i++)
                     {
                         Console.WriteLine(operacoesRealizadas[i]);
                     }
+                    Console.ReadLine();
+                    Console.Clear();
                 }
                 operacaoRealizada = $"{primeiroNumero} {simboloOperacao} {segundoNumero} = {resultado}";
                 operacoesRealizadas[contadorOperacoes] = operacaoRealizada;
@@ -141,6 +130,24 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 Console.ReadLine();
                 Console.Clear();
             }
+        }
+
+        private static double ValidaSegundoNumero(string opcao)
+        {
+            double segundoNumero;
+            do
+            {
+                Console.Write("Digite o segundo número: ");
+                double.TryParse(Console.ReadLine(), out segundoNumero);
+                if (opcao == "4" && segundoNumero == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Impossível dividir por Zero");
+                    Console.ResetColor();
+                }
+
+            } while (opcao == "4" && segundoNumero == 0);
+            return segundoNumero;
         }
 
         private static bool OperacoesRealizadas(string opcao)

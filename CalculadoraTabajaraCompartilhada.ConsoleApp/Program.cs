@@ -85,24 +85,15 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 Console.Write("Digite o primeiro número: ");
 
                 double.TryParse(Console.ReadLine(), out primeiroNumero);
-                
+
                 segundoNumero = ValidaSegundoNumero(opcao);
 
                 string simboloOperacao = "";
                 string operacaoRealizada = "";
                 double resultado = 0;
 
-                switch (opcao)
-                {
-                    case "1": resultado = primeiroNumero + segundoNumero; break;
+                resultado = Calcula(opcao, segundoNumero, primeiroNumero, resultado);
 
-                    case "2": resultado = primeiroNumero - segundoNumero; break;
-                    case "3": resultado = primeiroNumero * segundoNumero; break;
-                    case "4": resultado = primeiroNumero / segundoNumero; break;
-
-                    default:
-                        break;
-                }
                 switch (opcao)
                 {
                     case "1": simboloOperacao = " + "; break;
@@ -130,6 +121,22 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 Console.ReadLine();
                 Console.Clear();
             }
+        }
+
+        private static double Calcula(string opcao, double segundoNumero, double primeiroNumero, double resultado)
+        {
+            switch (opcao)
+            {
+                case "1": resultado = primeiroNumero + segundoNumero; break;
+                case "2": resultado = primeiroNumero - segundoNumero; break;
+                case "3": resultado = primeiroNumero * segundoNumero; break;
+                case "4": resultado = primeiroNumero / segundoNumero; break;
+
+                default:
+                    break;
+            }
+
+            return resultado;
         }
 
         private static double ValidaSegundoNumero(string opcao)

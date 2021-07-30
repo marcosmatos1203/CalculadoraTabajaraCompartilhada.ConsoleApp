@@ -22,9 +22,15 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
         //Nossa calculadora deve ter a possibilidade fazer várias operações de soma e de subtração
         //Rafa
         #endregion
+
         #region Requisito 04 [OK]
         //Nossa calculadora deve ter a possibilidade fazer as quatro operações básicas da matemática
         //marcos
+        #endregion
+
+        #region Requisito Funcional 05 [OK]
+        //Nossa calculadora deve validar a opções do menu [OK]
+        //Rafa
         #endregion
         static void Main(string[] args)
         {

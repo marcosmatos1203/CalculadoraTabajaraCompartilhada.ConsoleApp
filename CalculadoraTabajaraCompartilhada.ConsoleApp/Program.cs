@@ -74,7 +74,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                     ImprimeErro();
                     continue;
                 }
-                if (opcao == "5")
+                if (OperacoesRealizadas(opcao))
                 {
                     Console.Clear();
                     ApresentaOperacoesRealizadas();
@@ -141,6 +141,11 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 Console.ReadLine();
                 Console.Clear();
             }
+        }
+
+        private static bool OperacoesRealizadas(string opcao)
+        {
+            return opcao == "5";
         }
 
         private static void ImprimeErro()

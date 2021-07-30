@@ -71,11 +71,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 opcao = Console.ReadLine();
                 if (OpcaoInvalida(opcao))
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Opção inválida Tente novamente");
-                    Console.ResetColor();
-                    Console.ReadLine();
-                    Console.Clear();
+                    ImprimeErro();
                     continue;
                 }
                 if (opcao == "5")
@@ -145,6 +141,15 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 Console.ReadLine();
                 Console.Clear();
             }
+        }
+
+        private static void ImprimeErro()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Opção inválida Tente novamente");
+            Console.ResetColor();
+            Console.ReadLine();
+            Console.Clear();
         }
 
         private static bool OpcaoInvalida(string opcao)

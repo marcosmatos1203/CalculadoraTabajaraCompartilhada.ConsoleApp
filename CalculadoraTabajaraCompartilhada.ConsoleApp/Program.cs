@@ -22,7 +22,10 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
         //Nossa calculadora deve ter a possibilidade fazer várias operações de soma e de subtração
         //Rafa
         #endregion
-
+        #region Requisito 04 [OK]
+        //Nossa calculadora deve ter a possibilidade fazer as quatro operações básicas da matemática
+        //marcos
+        #endregion
         static void Main(string[] args)
         {
             string opcao = "";
@@ -32,9 +35,12 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 Console.WriteLine("Calculadora 1.3");
                 Console.WriteLine("Digite 1 para somar");
                 Console.WriteLine("Digite 2 para subtrair");
+                Console.WriteLine("Digite 3 para multiplicar");
+                Console.WriteLine("Digite 4 para dividir");
+                Console.WriteLine("Digite 5 para visualizar as operações");
                 Console.WriteLine("Digite S para sair");
                 opcao = Console.ReadLine();
-                if (opcao != "1" && opcao != "S" && opcao != "s" && opcao != "2")
+                if (opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4" && opcao != "5" && opcao != "s" && opcao != "S")
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Opção inválida Tente novamente");
@@ -58,7 +64,8 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                     case "1": resultado = primeiroNumero + segundoNumero; break;
 
                     case "2": resultado = primeiroNumero - segundoNumero; break;
-
+                    case "3": resultado = primeiroNumero * segundoNumero; break;
+                    case "4": resultado = primeiroNumero / segundoNumero; break;
                     default:
                         break;
                 }

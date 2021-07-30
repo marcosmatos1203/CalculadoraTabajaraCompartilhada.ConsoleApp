@@ -71,12 +71,12 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 opcao = Console.ReadLine();
                 if (OpcaoInvalida(opcao))
                 {
-                    ImprimeErro();
+                    ImprimirErro();
                     continue;
                 }
                 if (OperacoesRealizadas(opcao))
                 {
-                    ApresentaOperacoesRealizadas();
+                    ApresentarOperacoesRealizadas();
                     continue;
                 }
 
@@ -86,23 +86,17 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
 
                 double.TryParse(Console.ReadLine(), out primeiroNumero);
 
-                segundoNumero = ValidaSegundoNumero(opcao);
+                segundoNumero = ValidarSegundoNumero(opcao);
 
                 string simboloOperacao = "";
                 string operacaoRealizada = "";
                 double resultado = 0;
 
-                resultado = Calcula(opcao, segundoNumero, primeiroNumero, resultado);
-
-                switch (opcao)
-                {
-                    case "1": simboloOperacao = " + "; break;
-                    case "2": simboloOperacao = " - "; break;
-                    case "3": simboloOperacao = " * "; break;
-                    case "4": simboloOperacao = " / "; break;
-                    default: break;
-                }
-                void ApresentaOperacoesRealizadas()
+                resultado = Calcular(opcao, segundoNumero, primeiroNumero, resultado);
+                
+                simboloOperacao = ObterSimboloOperacao(opcao, simboloOperacao);
+                
+                void ApresentarOperacoesRealizadas()
                 {
                     Console.Clear();
                     Console.WriteLine("Histórico");
@@ -123,7 +117,21 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
             }
         }
 
-        private static double Calcula(string opcao, double segundoNumero, double primeiroNumero, double resultado)
+        private static string ObterSimboloOperacao(string opcao, string simboloOperacao)
+        {
+            switch (opcao)
+            {
+                case "1": simboloOperacao = " + "; break;
+                case "2": simboloOperacao = " - "; break;
+                case "3": simboloOperacao = " * "; break;
+                case "4": simboloOperacao = " / "; break;
+                default: break;
+            }
+
+            return simboloOperacao;
+        }
+
+        private static double Calcular(string opcao, double segundoNumero, double primeiroNumero, double resultado)
         {
             switch (opcao)
             {
@@ -139,7 +147,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
             return resultado;
         }
 
-        private static double ValidaSegundoNumero(string opcao)
+        private static double ValidarSegundoNumero(string opcao)
         {
             double segundoNumero;
             do
@@ -162,7 +170,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
             return opcao == "5";
         }
 
-        private static void ImprimeErro()
+        private static void ImprimirErro()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Opção inválida Tente novamente");

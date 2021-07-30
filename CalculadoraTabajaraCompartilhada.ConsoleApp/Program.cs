@@ -49,7 +49,11 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
          */
         #endregion
 
-
+        #region Requisto Não Funcional 01
+        //Todas as funcionalidades implementadas,
+        //precisamos melhorar o entendimento do nosso código
+        //Rafa e Marcos
+        #endregion
 
 
         static void Main(string[] args)
@@ -62,13 +66,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
             while (true)
             {
                 //1.5.1 app 1 verão 5 correção de bug 1
-                Console.WriteLine("Calculadora 1.5.1");
-                Console.WriteLine("Digite 1 para somar");
-                Console.WriteLine("Digite 2 para subtrair");
-                Console.WriteLine("Digite 3 para multiplicar");
-                Console.WriteLine("Digite 4 para dividir");
-                Console.WriteLine("Digite 5 para visualizar as operações");
-                Console.WriteLine("Digite S para sair");
+                Menu();
 
                 opcao = Console.ReadLine();
                 if (opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4" && opcao != "5" && opcao != "s" && opcao != "S")
@@ -80,7 +78,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                     Console.Clear();
                     continue;
                 }
-                if (opcao=="5")
+                if (opcao == "5")
                 {
                     Console.Clear();
                     ApresentaOperacoesRealizadas();
@@ -119,7 +117,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                     case "2": resultado = primeiroNumero - segundoNumero; break;
                     case "3": resultado = primeiroNumero * segundoNumero; break;
                     case "4": resultado = primeiroNumero / segundoNumero; break;
-                   
+
                     default:
                         break;
                 }
@@ -147,6 +145,17 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 Console.ReadLine();
                 Console.Clear();
             }
+        }
+
+        private static void Menu()
+        {
+            Console.WriteLine("Calculadora 1.5.1");
+            Console.WriteLine("Digite 1 para somar");
+            Console.WriteLine("Digite 2 para subtrair");
+            Console.WriteLine("Digite 3 para multiplicar");
+            Console.WriteLine("Digite 4 para dividir");
+            Console.WriteLine("Digite 5 para visualizar as operações");
+            Console.WriteLine("Digite S para sair");
         }
     }
 }

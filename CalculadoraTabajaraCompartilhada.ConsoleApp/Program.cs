@@ -76,7 +76,7 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 }
                 if (OperacoesRealizadas(opcao))
                 {
-                    ApresentarOperacoesRealizadas();
+                    ApresentarOperacoesRealizadas(contadorOperacoes, operacoesRealizadas);
                     continue;
                 }
 
@@ -96,18 +96,8 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 
                 simboloOperacao = ObterSimboloOperacao(opcao, simboloOperacao);
                 
-                void ApresentarOperacoesRealizadas()
-                {
-                    Console.Clear();
-                    Console.WriteLine("Histórico");
-                    Console.WriteLine("");
-                    for (int i = 0; i < contadorOperacoes; i++)
-                    {
-                        Console.WriteLine(operacoesRealizadas[i]);
-                    }
-                    Console.ReadLine();
-                    Console.Clear();
-                }
+                
+
                 operacaoRealizada = $"{primeiroNumero} {simboloOperacao} {segundoNumero} = {resultado}";
                 operacoesRealizadas[contadorOperacoes] = operacaoRealizada;
                 contadorOperacoes++;
@@ -115,6 +105,19 @@ namespace CalculadoraTabajaraCompartilhada.ConsoleApp
                 Console.ReadLine();
                 Console.Clear();
             }
+        }
+
+        private static void ApresentarOperacoesRealizadas(int contadorOperacoes, string[] operacoesRealizadas)
+        {
+            Console.Clear();
+            Console.WriteLine("Histórico");
+            Console.WriteLine("");
+            for (int i = 0; i < contadorOperacoes; i++)
+            {
+                Console.WriteLine(operacoesRealizadas[i]);
+            }
+            Console.ReadLine();
+            Console.Clear();
         }
 
         private static string ObterSimboloOperacao(string opcao, string simboloOperacao)
